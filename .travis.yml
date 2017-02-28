@@ -7,6 +7,10 @@ cache:
   directories:
   - node_modules
 
+env:
+  # NPM_TOKEN
+  - secure: "FrqcVV69uHdwNYM4ZDz6MMByj8zrlId4PdjlfLr5UB/peCMw4XJKQYsdlRGomAndJhgXHtN8D9FvzLrArWrtq6opQpDjSEjk3fuwbqUX9zFnF5jNdM1W26j/77izC68EsK04piZNmfRNhHFUmvw2SDdpI36A6DVrw5pQvK+zHh8fICnFPQnqUGnZSh2o6x2tYhihqR1w/oRRxlaDDaqDrBi+Ebv0xnHSBXfj3yjUdWKdLWp816p5wLlfxCZU8zDJx8lOug5+Arjao/uqEPCKF+4Z8oV0geb2GxV/Np0kNav/xHq6WWLPCl2MMEf3hEkZ8pY4KVN9u7qo2HQicFNcqgHeCWpUQMQGb3DJozLYCw2sJ7hrTM/LB98j5EqyP50flti/IYR7Y5sugYAYZVjoRcUTlWv0UC+ukULvc8791CxPQjUjS1zYCm0/CVmlJoT66NXRdqKXrHvwBGlzMjOOLm3/y4H1FeYbD08D8yY5rBPx9mNNMwzX2R6/jy0axsQSrtesaklK8icJROQ3QMWwNVgPl1nR6vu860EyQInZA00orO09hatukWtuenEtUkWn2LXLlPe5AoYJRKsEajZsig33P6YtwBnIwRhsCl4EXVc0g/6dwyR5AEMmxyviJ1+Pc09gm5f5KnydLZqjdNwJrGw2Yt1f5FxUAR9g5wHZSPg="
+
 install:
 - npm install
 
@@ -16,4 +20,4 @@ script:
 deploy:
   provider: script
   skip_cleanup: true
-  script: ./src/npm-prepack-publish.sh --user ${GEMFURY_USER} --api_key ${GEMFURY_API_KEY}
+  script: ./src/pack-and-publish.sh

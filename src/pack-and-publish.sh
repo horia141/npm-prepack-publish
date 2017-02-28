@@ -1,44 +1,16 @@
 #!/bin/bash
 
-ERR_NO_GEMFURY_USER=1
-ERR_NO_GEMFURY_API_KEY=2
-ERR_INVALID_F=3
-ERR_INVALID_E=4
-ERR_NO_UPLOAD=5
+ERR_NO_NPM_TOKEN=1
+ERR_INVALID_F=2
+ERR_INVALID_E=3
 
-while [[ $# -gt 1 ]]
-do
-    key="$1"
-
-    case $key in
-        -u|--user)
-            GEMFURY_USER="$2"
-            shift # past argument
-            ;;
-        -a|--api_key)
-            GEMFURY_API_KEY="$2"
-            shift # past argument
-            ;;
-        *)
-            # unknown option
-            ;;
-    esac
-    shift # past argument or value
-done
-
-if [[ -z ${GEMFURY_USER} ]]
+if [[ -z ${NPM_TOKEN} ]]
 then
-    echo 'Need the --user argument'
-    exit ${ERR_NO_GEMFURY_USER}
+    echo 'Need the NPM_TOKEN env variale'
+    exit ${ERR_NO_NPM_TOKEN}
 fi
 
-if [[ -z ${GEMFURY_API_KEY} ]]
-then
-    echo 'Need the --api_key argument'
-    exit ${ERR_NO_GEMFURY_API_KEY}
-fi
-
-# Skip standard  `npm pack` and do the archiving ourselves. Include only the bare minimum and use a flater directory structure so imports will be easy.
+# Skip standard `npm pack` and do the archiving ourselves. Include only the bare minimum and use a flater directory structure so imports will be easy.
 
 PACKAGE_NAME=$($(npm bin)/json -f package.json name | sed 's/[@",]//g' | sed 's|[/]|-|g' | sed 's/ //g')
 PACKAGE_VERSION=$($(npm bin)/json -f package.json version | sed 's/[", ]//g')
@@ -95,13 +67,11 @@ done
 
 if [[ ${SAW_README} = 0 ]]
 then
-    echo 'Here'
     cp README.md ${WORK_DIR}
 fi
 
 if [[ ${SAW_PACKAGE} = 0 ]]
 then
-    echo 'THere'
     cp package.json ${WORK_DIR}
 fi
 
@@ -114,19 +84,11 @@ do
 done
 
 npm pack
+../node_modules/.bin/ci-publish
+
+EXIT_CODE=$?
 
 cd ..
-
-mv ${WORK_DIR}/${PACKAGE} .
-
 rm -rf ${WORK_DIR}
 
-curl -s  -F package=@${PACKAGE} https://${GEMFURY_API_KEY}@push.fury.io/${GEMFURY_USER}/ > result
-if [ -z "$(grep -e ok result)" ]
-then
-    rm ${PACKAGE}
-    rm result
-    exit ${ERR_NO_UPLOAD}
-fi
-rm ${PACKAGE}
-rm result
+exit ${EXIT_CODE}
