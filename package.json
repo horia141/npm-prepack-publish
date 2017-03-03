@@ -1,6 +1,6 @@
 {
   "name": "npm-prepack-publish",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Build a custom package and push it to NPM.",
   "author": "Horia Coman <horia141@gmail.com>",
   "scripts": {},
