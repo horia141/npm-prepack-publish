@@ -20,4 +20,4 @@ script:
 deploy:
   provider: script
   skip_cleanup: true
-  script: ./src/pack-and-publish.sh
+  script: ./src/prepack-publish.sh
