@@ -1,7 +1,3 @@
-# NPM Prepack And Publish [![Build Status](https://travis-ci.org/horia141/npm-prepack-publish.svg?branch=master)](https://travis-ci.org/horia141/npm-prepack-publish)
+# NPM Prepack And Publish https://github.com/horia141/npm-prepack-publish.git [![Build Status](https://travis-ci.org/horia141/npm-prepack-publish.svg?branch=master)](https://travis-ci.org/horia141/npm-prepack-publish)
 
-Processes the current package and builds an archive which it then pushes to npm.
-
-```
-$(npm bin)/npm-prepack-publish -u <username> -a <token>
-```
+See [this blog post](https://horia141.com/npm-prepack-publish) for the an introduction and tutorial.

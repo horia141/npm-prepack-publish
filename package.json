@@ -1,11 +1,11 @@
 {
   "name": "npm-prepack-publish",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Build a custom package and push it to NPM.",
   "author": "Horia Coman <horia141@gmail.com>",
   "scripts": {},
   "bin": {
-    "pack-and-publish": "pack-and-publish.sh"
+    "prepack-publish": "prepack-publish.sh"
   },
   "keywords": [
     "npm",
@@ -17,7 +17,7 @@
   },
   "homepage": "https://github.com/neoncity/npm-prepack-publish#readme",
   "filesPack": {
-    "src/pack-and-publish.sh": "f:pack-and-publish.sh",
+    "src/prepack-publish.sh": "f:prepack-publish.sh",
     "README.md": "f:README.md",
     "package.json": "f:package.json"
   },
